@@ -35,7 +35,7 @@
 > [!NOTE]
 >  is modeled after [Devin](https://www.cognition-labs.com/introducing-devin) by Cognition AI. This project aims to be an open-source alternative to Devin with an "overly ambitious" goal to meet the same score as Devin in the [SWE-bench](https://www.swebench.com/) Benchmarks... and eventually beat it?
 
-## Demo
+## Demo [Click on the image!!!]
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8v9ovFEuXho/0.jpg)](https://www.youtube.com/watch?v=8v9ovFEuXho)
 
