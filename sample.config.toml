@@ -1,0 +1,25 @@
+[STORAGE]
+SQLITE_DB = "data/db/zen.db"
+SCREENSHOTS_DIR = "data/screenshots"
+PDFS_DIR = "data/pdfs"
+PROJECTS_DIR = "data/projects"
+LOGS_DIR = "data/logs"
+REPOS_DIR = "data/repos"
+
+[API_KEYS]
+BING = "<YOUR_BING_API_KEY>"
+GOOGLE_SEARCH = "<YOUR_GOOGLE_SEARCH_API_KEY>"
+GOOGLE_SEARCH_ENGINE_ID = "<YOUR_GOOGLE_SEARCH_ENGINE_ID>"
+GEMINI = "<YOUR_GEMINI_API_KEY>"
+NETLIFY = "<YOUR_NETLIFY_API_KEY>"
+
+[API_ENDPOINTS]
+BING = "https://api.bing.microsoft.com/v7.0/search"
+GOOGLE = "https://www.googleapis.com/customsearch/v1"
+
+[LOGGING]
+LOG_REST_API = "true"
+LOG_PROMPTS = "false"
+
+[TIMEOUT]
+INFERENCE = 60

@@ -1,0 +1,113 @@
+import pygame
+
+# Initialize Pygame
+pygame.init()
+
+# Set up the game window
+window_width = 600
+window_height = 400
+screen = pygame.display.set_mode((window_width, window_height))
+pygame.display.set_caption("Snake Game")
+
+# Colors
+black = (0, 0, 0)
+white = (255, 255, 255)
+green = (0, 255, 0)
+red = (255, 0, 0)
+
+# Snake class
+class Snake:
+    def __init__(self):
+        self.body = [(window_width // 2, window_height // 2)]
+        self.direction = "RIGHT"
+        self.speed = 15
+
+    def move(self):
+        head_x, head_y = self.body[0]
+        if self.direction == "RIGHT":
+            new_head = (head_x + self.speed, head_y)
+        elif self.direction == "LEFT":
+            new_head = (head_x - self.speed, head_y)
+        elif self.direction == "UP":
+            new_head = (head_x, head_y - self.speed)
+        elif self.direction == "DOWN":
+            new_head = (head_x, head_y + self.speed)
+        self.body.insert(0, new_head)
+        self.body.pop()
+
+    def change_direction(self, new_direction):
+        if new_direction == "RIGHT" and self.direction != "LEFT":
+            self.direction = new_direction
+        elif new_direction == "LEFT" and self.direction != "RIGHT":
+            self.direction = new_direction
+        elif new_direction == "UP" and self.direction != "DOWN":
+            self.direction = new_direction
+        elif new_direction == "DOWN" and self.direction != "UP":
+            self.direction = new_direction
+
+    def draw(self):
+        for segment in self.body:
+            pygame.draw.rect(screen, green, (segment[0], segment[1], self.speed, self.speed))
+
+# Food class
+class Food:
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+        self.generate()
+
+    def generate(self):
+        self.x = (pygame.randint(0, window_width - self.speed) // self.speed) * self.speed
+        self.y = (pygame.randint(0, window_height - self.speed) // self.speed) * self.speed
+
+    def draw(self):
+        pygame.draw.rect(screen, red, (self.x, self.y, self.speed, self.speed))
+
+# Game loop
+snake = Snake()
+food = Food()
+clock = pygame.time.Clock()
+game_over = False
+
+while not game_over:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            game_over = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                snake.change_direction("RIGHT")
+            elif event.key == pygame.K_LEFT:
+                snake.change_direction("LEFT")
+            elif event.key == pygame.K_UP:
+                snake.change_direction("UP")
+            elif event.key == pygame.K_DOWN:
+                snake.change_direction("DOWN")
+
+    # Update snake position
+    snake.move()
+
+    # Check for collisions
+    if snake.body[0] == (food.x, food.y):
+        food.generate()
+        snake.body.append((0, 0))  # Add a new segment to the snake
+
+    # Check for self-collision
+    for segment in snake.body[1:]:
+        if snake.body[0] == segment:
+            game_over = True
+
+    # Check for boundary collision
+    if snake.body[0][0] < 0 or snake.body[0][0] >= window_width or snake.body[0][1] < 0 or snake.body[0][1] >= window_height:
+        game_over = True
+
+    # Render the game
+    screen.fill(black)
+    snake.draw()
+    food.draw()
+    pygame.display.flip()
+
+    # Control game speed
+    clock.tick(10)
+
+# Quit Pygame
+pygame.quit()

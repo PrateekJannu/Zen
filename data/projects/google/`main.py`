@@ -1,0 +1,30 @@
+import requests
+from bs4 import BeautifulSoup
+
+def find_gemini_api_competition():
+    """Searches the web for information about the Gemini API dev competition."""
+
+    search_query = "Gemini API dev competition"
+    url = f"https://www.google.com/search?q={search_query}"
+
+    response = requests.get(url)
+    response.raise_for_status()  # Raise an exception for bad status codes
+
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Find relevant links in the search results
+    links = soup.find_all('a', href=True)
+    for link in links:
+        if 'gemini' in link['href'] and 'api' in link['href'] and 'competition' in link['href']:
+            print(f"Found potential competition link: {link['href']}")
+            return link['href']
+
+    print("No relevant links found.")
+    return None
+
+if __name__ == "__main__":
+    competition_link = find_gemini_api_competition()
+    if competition_link:
+        print(f"Visiting competition website: {competition_link}")
+        # You can now use requests to fetch the competition website and parse it
+        # for information about rules, prizes, deadlines, and how to participate.
