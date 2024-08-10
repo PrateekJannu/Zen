@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".assets/google-gemini-icon.png" alt="Zen Logo" width="125">
+  <img src=".assets/google-gemini-icon.png" alt="Zen Logo" width="50">
 </p>
 
 <h1 align="center"> 🧘 Google Zen (Twins of Gemini) - <i> AI Software Engineer </i>🦾</h1>
