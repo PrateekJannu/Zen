@@ -2,7 +2,7 @@
   <img src=".assets/google-gemini-icon.png" alt="Zen Logo" width="50">
 </p>
 
-<h1 align="center"> 🧘 Google Zen (Twins of Gemini) - <i> AI Software Engineer </i>🦾</h1>
+<h1 align="center"> 🧘 Zen (Twins of Gemini) - <i> AI Software Engineer </i>🦾</h1>
 
 <i> Gemini API dev competition.</i>
 
